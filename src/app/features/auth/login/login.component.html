@@ -1,0 +1,54 @@
+<main>
+    <article class="card_login">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <div class="icon__card">
+                <div class="icon__container">
+                    <i class="ti ti-file-invoice"></i>
+                </div>
+                <p>Pólizas de faltantes</p>
+            </div>
+            <div class="title__card">
+                <p class="txt login">Iniciar sesión</p>
+                <p class="txt subt">Ingresa tus credenciales para continuar</p>
+            </div>
+
+            @if (error) {
+                <div class="error__card">
+                    <i class="ti ti-alert-circle"></i>
+                    <span>{{ error }}</span>
+                </div>
+            }
+
+            <div class="input__card">
+                <label for="usuario">Usuario</label>
+                <input type="text" name="usuario" formControlName="username" id="" placeholder="admin" [class.input--error]="username?.invalid && username?.touched">
+                @if (username?.invalid && username?.touched) {
+                    <span class="input__error">El usuario es requerido</span>
+                }
+            </div>
+            <div class="input__card">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" formControlName="password" id="" placeholder="admin123" [class.input--error]="password?.invalid && password?.touched">
+                @if (password?.invalid && password?.touched) {
+                    <span class="input__error">La contraseña es requerida</span>
+                }
+            </div>
+            <div class="button__card">
+                <button type="submit" [disabled]="cargando">
+                    @if (cargando) {
+                        <i class="ti ti-loader-2 spin"></i>
+                    }
+                    @if (!cargando) {
+                        <i class="ti ti-login"></i>
+                    }
+                    <span>{{cargando ? 'Ingresando...' : 'Ingresar'}}</span>
+                </button>
+            </div>
+            <div class="label__card">
+                <p>Sistema Interno -- solo personal autorizado</p>
+            </div>
+
+        </form>
+    </article>
+</main>

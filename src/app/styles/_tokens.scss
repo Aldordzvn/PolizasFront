@@ -1,0 +1,44 @@
+// Colores — dark mode
+$bg-base-dark: #0A0A0A;
+$bg-surface-dark: #111111;
+$bg-raised-dark: #1A1A1A;
+$bg-hover-dark: #222222;
+$border-dark: #2A2A2A;
+$border-hover-dark: #333333;
+$text-primary-dark: #F0F0F0;
+$text-secondary-dark: #888888;
+$text-tertiary-dark: #555555;
+
+// Colores — light mode
+$bg-base-light: #FAFAFA;
+$bg-surface-light: #FFFFFF;
+$bg-raised-light: #F4F4F5;
+$bg-hover-light: #E4E4E7;
+$border-light: #E4E4E7;
+$text-primary-light: #09090B;
+$text-secondary-light: #71717A;
+
+// Acento
+$primary: #5865F2;
+$primary-hover: #4752C4;
+$primary-active: #3B42A8;
+
+// Semánticos
+$success: #22C55E;
+$warning: #F59E0B;
+$danger: #EF4444;
+
+// Tipografía
+$font-sans: Inter, system-ui, -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+// Radios
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+$radius-pill: 99px;
+
+// Breakpoints
+$mobile: 768px;
+
