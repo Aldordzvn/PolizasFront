@@ -12,7 +12,7 @@ export class AuthService {
 
     login(username: string, password: string){
         return this.http.post<{token: string}>(
-            `${this.apiUrl}/api/auth/login`,
+            `${this.apiUrl}/auth/login`,
             {username, password}
         ).pipe(
             tap(res => localStorage.setItem('token', res.token))
