@@ -5,6 +5,66 @@
     </div>
 </header>
 
+<main>
+    <div class="cards--dashboard">
+        <div class="card__container">
+            <p class="txt titulo">Pólizas</p>
+            <p class="txt cantidad"> {{ (polizas$ | async)?.length ?? 0 }} </p>
+        </div>
 
+        <div class="card__container">
+            <p class="txt titulo">Empleados</p>
+            <p class="txt cantidad"> {{(empleados$ | async)?.length ?? 0}} </p>
+        </div>
 
+        <div class="card__container">
+            <p class="txt titulo">Artículos</p>
+            <p class="txt cantidad"> {{(inventarios$ | async)?.length ?? 0}} </p>
+        </div>
 
+        <div class="card__container">
+            <p class="txt titulo">Faltantes</p>
+            <p class="txt cantidad critica"> {{(criticos$ | async)?.length ?? 0}} </p>
+        </div>
+    </div>
+
+    <div class="poliza__mobile--recent">
+        <div class="poliza__mobile--header">
+            <p class="txt">Pólizas recientes</p>
+        </div>
+        @for(poliza of (polizas$ | async); track poliza.idPoliza){
+        <div class="poliza__card">
+            <div class="card__datos">
+                <p class="identificador">#<span>{{poliza.idPoliza}} -- {{poliza.nombreEmpleado}}</span></p>
+                <p class="producto"><span>{{poliza.nombreArticulo}}. </span> Cant. <span> {{poliza.cantidadFaltante}} </span></p>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- <div class="poliza__table--container">
+        <div class="poliza__table--header">
+            <p class="txt">Pólizas recientes</p>
+            <button>Ver todas</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Empleado</th>
+                <th>Artículo</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>#12</td>
+                <td>Aldo Rodrigeuz</td>
+                <td>Teclado USB</td>
+                <td>3</td>
+                <td>Hoy 12:00</td>
+                <td>Activa</td>
+            </tr>
+        </table>
+    </div> -->
+</main>

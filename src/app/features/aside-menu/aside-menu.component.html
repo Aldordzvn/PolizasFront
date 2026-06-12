@@ -1,1 +1,21 @@
-<p>aside-menu works!</p>
+<nav class="nav--mobile__container">
+    <a routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="opc inicio--mobile__container">
+        <i class="ti ti-layout-dashboard"></i>
+        inicio
+    </a>
+
+    <a routerLink="/empleados" routerLinkActive="link-active" class="opc empleados--mobile__container">
+        <i class="ti ti-users"></i>
+        Empleados
+    </a>
+
+    <a routerLink="/inventario" routerLinkActive="link-active" class="opc inventario--mobile__container">
+        <i class="ti ti-box"></i>
+        Inventario
+    </a>
+
+    <a routerLink="/polizas" routerLinkActive="link-active" class="opc polizas--mobile__container">
+        <i class="ti ti-file-invoice"></i>
+        Pólizas
+    </a>
+</nav>
