@@ -1,4 +1,4 @@
-:host{
+:host {
     margin-top: auto;
 }
 
@@ -20,7 +20,8 @@
     text-transform: capitalize;
     cursor: pointer;
     transition: color 0.3s ease;
-    
+    text-decoration: none;
+
     i {
         font-size: 2rem;
         color: var(--textSecondary);
@@ -31,6 +32,13 @@
         color: var(--primaryHover);
 
         i {
+            color: var(--primaryHover);
+        }
+    }
+
+    &.active-link {
+        color: var(--primary);
+        i{
             color: var(--primaryHover);
         }
     }

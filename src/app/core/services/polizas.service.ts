@@ -12,6 +12,7 @@ export class PolizasService{
     private datos$ = new BehaviorSubject<Poliza[]>([]);
     readonly polizas$ = this.datos$.asObservable();
 
+
     getPolizas(): Observable<ApiResponse<Poliza[]>>{
         return this.http.get<ApiResponse<Poliza[]>>(this.apiUrl).pipe(
             tap(res => this.datos$.next(res.datos))

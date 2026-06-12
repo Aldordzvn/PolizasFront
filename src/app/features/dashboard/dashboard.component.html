@@ -9,22 +9,22 @@
     <div class="cards--dashboard">
         <div class="card__container">
             <p class="txt titulo">Pólizas</p>
-            <p class="txt cantidad">124</p>
+            <p class="txt cantidad"> {{ (polizas$ | async)?.length ?? 0 }} </p>
         </div>
 
         <div class="card__container">
             <p class="txt titulo">Empleados</p>
-            <p class="txt cantidad">20</p>
+            <p class="txt cantidad"> {{(empleados$ | async)?.length ?? 0}} </p>
         </div>
 
         <div class="card__container">
             <p class="txt titulo">Artículos</p>
-            <p class="txt cantidad">120</p>
+            <p class="txt cantidad"> {{(inventarios$ | async)?.length ?? 0}} </p>
         </div>
 
         <div class="card__container">
             <p class="txt titulo">Faltantes</p>
-            <p class="txt cantidad critica">7</p>
+            <p class="txt cantidad critica"> {{(criticos$ | async)?.length ?? 0}} </p>
         </div>
     </div>
 
@@ -32,33 +32,14 @@
         <div class="poliza__mobile--header">
             <p class="txt">Pólizas recientes</p>
         </div>
+        @for(poliza of (polizas$ | async); track poliza.idPoliza){
         <div class="poliza__card">
             <div class="card__datos">
-                <p class="identificador">#123 -- Aldo Rodriguez</p>
-                <p class="producto">Teclado USB. Cant. 3</p>
-            </div>
-            <div class="estatus__container">
-                <p class="txt__estatus">Activa</p>
+                <p class="identificador">#<span>{{poliza.idPoliza}} -- {{poliza.nombreEmpleado}}</span></p>
+                <p class="producto"><span>{{poliza.nombreArticulo}}. </span> Cant. <span> {{poliza.cantidadFaltante}} </span></p>
             </div>
         </div>
-        <div class="poliza__card">
-            <div class="card__datos">
-                <p class="identificador">#123 -- Aldo Rodriguez</p>
-                <p class="producto">Teclado USB. Cant. 3</p>
-            </div>
-            <div class="estatus__container">
-                <p class="txt__estatus">Activa</p>
-            </div>
-        </div>
-        <div class="poliza__card">
-            <div class="card__datos">
-                <p class="identificador">#123 -- Aldo Rodriguez</p>
-                <p class="producto">Teclado USB. Cant. 3</p>
-            </div>
-            <div class="estatus__container">
-                <p class="txt__estatus">Activa</p>
-            </div>
-        </div>
+        }
     </div>
 
     <!-- <div class="poliza__table--container">
