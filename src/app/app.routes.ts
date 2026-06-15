@@ -24,6 +24,20 @@ export const routes: Routes = [
         .then(m => m.EmpleadosComponent)
   },
   {
+    path: 'empleados/nuevo',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-empleados/form-empleados.component')
+        .then(m => m.FormEmpleadosComponent)
+  },
+  {
+    path: 'empleados/:id/editar',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-empleados/form-empleados.component')
+        .then(m => m.FormEmpleadosComponent)
+  },
+  {
     path: 'inventario',
     canActivate: [authGuard],
     loadComponent: () =>

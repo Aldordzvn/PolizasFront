@@ -8,10 +8,11 @@ import { Empleado } from '../../shared/models/empleado.model';
 import { Inventario } from '../../shared/models/inventario.model';
 import { mapOneOrManyArgs } from 'rxjs/internal/util/mapOneOrManyArgs';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

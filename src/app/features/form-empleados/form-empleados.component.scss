@@ -1,0 +1,122 @@
+header {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1.6rem;
+    border-bottom: 1px solid var(--border);
+
+    p {
+        color: var(--textSecondary);
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--textSecondary);
+
+        &.active {
+            color: var(--textPrimary);
+        }
+
+        &:hover {
+            color: var(--textTertiary);
+        }
+    }
+}
+
+.form__container{
+    border: 1px solid var(--border);
+    margin-top: 1.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.form__header {
+    padding: 1.6rem;
+
+    p {
+        margin: 0;
+    }
+
+    border-bottom: 1px solid var(--border);
+}
+
+.contact__container {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .contact__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        label {
+            color: var(--textSecondary);
+        }
+
+        input[type="text"] {
+            appearance: none;
+            border-radius: 6px;
+            border: 1px solid var(--textTertiary);
+            padding: 1rem;
+            font-size: 2rem;
+            outline: none;
+
+            &:focus {
+                border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+                box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+            }
+        }
+    }
+}
+
+.puesto__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.6rem 1.6rem ;
+    gap: 0.8rem;
+    border-bottom: 1px solid var(--border);
+
+    label {
+        color: var(--textSecondary);
+    }
+
+    select {
+        appearance: none;
+        border-radius: 6px;
+        border: 1px solid var(--textTertiary);
+        padding: 1rem;
+        font-size: 2rem;
+        outline: none;
+
+
+        &:focus {
+            border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+            box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+        }
+    }
+}
+
+.btns__container{
+    display: flex;
+    padding: 1.6rem;
+    justify-content: right;
+    gap: 2rem;
+    button{
+        height: 4rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background-color: transparent;
+        padding: 0 1.6rem;
+        cursor: pointer;
+        font-weight: 600;
+        &:hover{
+            background-color: var(--bgRaised);
+        }
+    }
+}
