@@ -1,1 +1,55 @@
-<p>inventario works!</p>
+<header>
+    <div class="links__container">
+        <a href="#">Inicio</a>
+        <p>/</p>
+        <a href="#" class="actual">Inventario</a>
+    </div>
+
+    <button>
+        <i class="ti ti-plus"></i>
+        Nuevo Articulo
+    </button>
+</header>
+
+<main>
+    <main>
+    <router-outlet />
+    <div class="table__container">
+        <div class="table__header">
+            <p class="txt title">Empleados</p>
+            <p class="txt size"> ({{(empleados$ | async)?.length ?? 0}}) </p>
+        </div>
+        <div class="table--wrapper">
+            <table>
+                <tr class="titles">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Puesto</th>
+                    <th>Pólizas</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                @for (empleado of (empleados$ | async); track $index) {
+                <tr>
+                    <td> {{empleado.idEmpleado}} </td>
+                    <td>{{empleado.nombre}} {{empleado.apellido}} </td>
+                    <td><span> {{empleado.puesto}} </span></td>
+                    <td> {{(contarPolizas(empleado.idEmpleado) | async)}} </td>
+                    <td>
+                        <a [routerLink]="['/empleados', empleado.idEmpleado, 'editar']"><i class="ti ti-edit"></i></a>
+                    </td>
+                    <td>
+                        <button (click)="abrirModalEliminar(empleado.idEmpleado)"><i class="ti ti-trash"></i></button>
+                    </td>
+                </tr>
+                }
+
+            </table>
+        </div>
+
+
+    </div>
+
+</main>
+</main>

@@ -1,0 +1,51 @@
+<header>
+    <a href="#">Inicio</a>
+    <p>/</p>
+    <a href="#">Empleados</a>
+    <p>/</p>
+    <a href="#" class="active">Nuevo Empleado</a>
+</header>
+
+<main>
+    <div class="form__container">
+        <div class="form__header">
+            <p>Datos del empleado</p>
+        </div>
+        <form [formGroup]="empleadoForm" (ngSubmit)="guardar()">
+            <div class="contact__container">
+                <div class="contact__group">
+                    <label for="">Nombre</label>
+                    <input type="text" placeholder="Introduce tu nombre..." formControlName="nombre" [class.input--error]="nombre?.invalid && nombre?.touched">
+                    @if(nombre?.invalid && nombre?.touched){
+                        <span class="input__error">El nombre es requerido</span>
+                    }
+                </div>
+                <div class="contact__group">
+                    <label for="">Apellido</label>
+                    <input type="text" name="" id="" placeholder="Introduce tu apellido..." formControlName="apellido" [class.input--error]="apellido?.invalid && apellido?.touched">
+                    @if(apellido?.invalid && apellido?.touched){
+                        <span class="input__error">El apellido es requerido</span>
+                    }
+                </div>
+            </div>
+            <div class="puesto__container">
+                <label for="">Puesto</label>
+                <select name="" id="" formControlName="puesto">
+                    <option value="" disabled selected hidden>--- OPCIONES ---</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="EMPLEADO">EMPLEADO</option>
+                </select>
+                @if (puesto?.invalid && puesto?.touched) {
+                    <span>El puesto es necesario</span>
+                }
+            </div>
+            <div class="btns__container">
+                <button (click)="cancelar()">Cancelar</button>
+                <button>
+                    <i class="ti ti-plus"></i>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
