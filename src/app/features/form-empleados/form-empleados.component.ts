@@ -18,6 +18,8 @@ export class FormEmpleadosComponent {
   private route = inject(ActivatedRoute);
   modoEdicion = false;
   idEmpleado: number | null = null;
+  error: string = '';
+  cargando: boolean = false;
 
   empleadoForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -54,7 +56,10 @@ export class FormEmpleadosComponent {
       return;
     }
 
-    if(this.modoEdicion && !this.empleadoForm.dirty){
+    this.error = '';
+    this.cargando = true;
+
+    if (this.modoEdicion && !this.empleadoForm.dirty) {
       this.router.navigate(['/empleados']);
       return;
     }
@@ -67,7 +72,10 @@ export class FormEmpleadosComponent {
 
       this.empleadoService.modificarEmpleado(this.idEmpleado, empleadoActualizado).subscribe({
         next: () => this.router.navigate(['/empleados']),
-        error: () => console.error('Error al actualizar empleado')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     } else {
       const empleadoNuevo: CrearEmpleadoRequest = {
@@ -78,7 +86,10 @@ export class FormEmpleadosComponent {
 
       this.empleadoService.addEmpleado(empleadoNuevo).subscribe({
         next: () => this.router.navigate(['/empleados']),
-        error: () => console.error('Error al crear empleado')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     }
 

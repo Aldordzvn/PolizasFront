@@ -13,6 +13,10 @@
         </div>
         <form [formGroup]="polizaForm" (ngSubmit)="guardar()">
             <div class="contact__container">
+                <div class="error__card" *ngIf="error">
+                    <i class="ti ti-alert-circle"></i>
+                    <span>{{ error }}</span>
+                </div>
                 <div class="contact__group">
                     <label for="">Empleado Responsable</label>
                     <select name="" id="" formControlName="idEmpleado"
@@ -51,8 +55,13 @@
             <div class="btns__container">
                 <button (click)="cancelar()">Cancelar</button>
                 <button>
-                    <i class="ti ti-plus"></i>
-                    Guardar
+                     @if (cargando) {
+                        <i class="ti ti-loader-2 spin"></i>
+                    }
+                    @if (!cargando) {
+                        <i class="ti ti-plus"></i>
+                    }
+                    <span>{{cargando ? 'Guardando...' : 'Guardar'}}</span>
                 </button>
             </div>
         </form>

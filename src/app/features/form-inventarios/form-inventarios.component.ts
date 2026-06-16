@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { InventarioService } from '../../core/services/inventario.service';
 import { ActualizarInventarioRequest, CrearInventarioRequest } from '../../shared/models/inventario.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-inventarios',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './form-inventarios.component.html',
   styleUrl: './form-inventarios.component.scss'
 })
@@ -17,6 +18,8 @@ export class FormInventariosComponent {
   private inventarioService = inject(InventarioService);
   modoEdicion: Boolean = false;
   skuParam: string | null = null;
+  error: string = '';
+  cargando: boolean = false;
 
   inventarioForm: FormGroup = this.fb.group({
     sku: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
@@ -53,6 +56,9 @@ export class FormInventariosComponent {
       return;
     }
 
+    this.error = '';
+    this.cargando = true;
+
     if (this.modoEdicion && !this.inventarioForm.dirty) {
       this.router.navigate(['/inventario']);
       return;
@@ -66,7 +72,10 @@ export class FormInventariosComponent {
 
       this.inventarioService.modificarInventario(this.skuParam, invetarioActualizado ).subscribe({
         next: () => this.router.navigate(['/inventario']),
-        error: () => console.error('Error al actualizar Inventario')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     } else {
       const inventarioNuevo: CrearInventarioRequest = {
@@ -77,7 +86,10 @@ export class FormInventariosComponent {
 
       this.inventarioService.addInventario(inventarioNuevo).subscribe({
         next: () => this.router.navigate(['/inventario']),
-        error: () => console.error('Error al crear inventario')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     }
 

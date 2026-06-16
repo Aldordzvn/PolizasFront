@@ -27,6 +27,8 @@ export class FormPolizasComponent {
   inventarios$: Observable<Inventario[]> = this.inventarioService.inventarios$;
   modoEdicion: Boolean = false;
   idPoliza: number | null = null;
+  error: string = '';
+  cargando = false;
 
   polizaForm: FormGroup = this.fb.group({
     idEmpleado: ['', [Validators.required]],
@@ -65,6 +67,9 @@ export class FormPolizasComponent {
       return;
     }
 
+    this.error = '';
+    this.cargando = true;
+
     if (this.modoEdicion && !this.polizaForm.dirty) {
       this.router.navigate(['/polizas']);
       return;
@@ -79,7 +84,10 @@ export class FormPolizasComponent {
 
       this.polizasService.modificarPoliza(this.idPoliza, polizaActualizada).subscribe({
         next: () => this.router.navigate(['/polizas']),
-        error: () => console.error('Error al actualizar la póliza')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     } else {
       const polizaNueva: CrearPolizaRequest = {
@@ -90,7 +98,10 @@ export class FormPolizasComponent {
 
       this.polizasService.addPoliza(polizaNueva).subscribe({
         next: () => this.router.navigate(['/polizas']),
-        error: () => console.error('Error al crear la póliza')
+        error: (err) => {
+          this.cargando = false;
+          this.error = err.error?.mensaje ?? 'Error al crear la Póliza';
+        }
       });
     }
 
@@ -100,15 +111,15 @@ export class FormPolizasComponent {
     this.router.navigate(['/polizas']);
   }
 
-  get idEmpleado(){
+  get idEmpleado() {
     return this.polizaForm.get('idEmpleado')
   }
 
-  get sku(){
+  get sku() {
     return this.polizaForm.get('sku')
   }
 
-  get cantidad(){
+  get cantidad() {
     return this.polizaForm.get('cantidad')
   }
 }
