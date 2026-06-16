@@ -30,13 +30,13 @@
             </div>
             <div class="puesto__container">
                 <label for="">Puesto</label>
-                <select name="" id="" formControlName="puesto">
+                <select name="" id="" formControlName="puesto" [class.input--error]="puesto?.invalid && puesto?.touched">
                     <option value="" disabled selected hidden>--- OPCIONES ---</option>
                     <option value="ADMIN">ADMIN</option>
                     <option value="EMPLEADO">EMPLEADO</option>
                 </select>
                 @if (puesto?.invalid && puesto?.touched) {
-                    <span>El puesto es necesario</span>
+                    <span class="input__error">El puesto es necesario</span>
                 }
             </div>
             <div class="btns__container">

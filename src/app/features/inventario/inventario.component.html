@@ -5,51 +5,54 @@
         <a href="#" class="actual">Inventario</a>
     </div>
 
-    <button>
+    <button routerLink="/inventario/nuevo">
         <i class="ti ti-plus"></i>
         Nuevo Articulo
     </button>
 </header>
 
+
 <main>
-    <main>
-    <router-outlet />
     <div class="table__container">
         <div class="table__header">
-            <p class="txt title">Empleados</p>
-            <p class="txt size"> ({{(empleados$ | async)?.length ?? 0}}) </p>
+            <p class="txt title">Articulos</p>
+            <p class="txt size"> ({{(inventarios$ | async)?.length ?? 0}}) </p>
         </div>
         <div class="table--wrapper">
             <table>
                 <tr class="titles">
-                    <th>ID</th>
+                    <th>SKU</th>
                     <th>Nombre</th>
-                    <th>Puesto</th>
-                    <th>Pólizas</th>
+                    <th>Cantidad</th>
                     <th></th>
                     <th></th>
                 </tr>
 
-                @for (empleado of (empleados$ | async); track $index) {
+                @for (inventario of (inventarios$ | async); track $index) {
                 <tr>
-                    <td> {{empleado.idEmpleado}} </td>
-                    <td>{{empleado.nombre}} {{empleado.apellido}} </td>
-                    <td><span> {{empleado.puesto}} </span></td>
-                    <td> {{(contarPolizas(empleado.idEmpleado) | async)}} </td>
+                    <td> {{inventario.sku}} </td>
+                    <td> {{inventario.nombre}} </td>
+                    <td> {{inventario.cantidad}} </td>
                     <td>
-                        <a [routerLink]="['/empleados', empleado.idEmpleado, 'editar']"><i class="ti ti-edit"></i></a>
+                        <a [routerLink]="['/inventario', inventario.sku, 'editar']"><i class="ti ti-edit"></i></a>
                     </td>
                     <td>
-                        <button (click)="abrirModalEliminar(empleado.idEmpleado)"><i class="ti ti-trash"></i></button>
+                        <button (click)="abrirModalEliminar(inventario.sku)"><i class="ti ti-trash"></i></button>
                     </td>
                 </tr>
                 }
-
             </table>
         </div>
-
-
     </div>
+</main>
 
-</main>
-</main>
+<div class="modal" [class.active]="modalEstatus">
+    <div class="modal__container">
+        <p>¿Seguro que desea eliminar el registro?</p>
+        <i class="ti ti-alert-octagon"></i>
+        <div class="buttons__container">
+            <button (click)="cerrarModalEliminar()" class="cancelar">Cancelar</button>
+            <button class="eliminar" (click)="eliminarInventario()">Eliminar</button>
+        </div>
+    </div>
+</div>
