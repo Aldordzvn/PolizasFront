@@ -1,13 +1,13 @@
 <header>
     <div class="links__container">
-        <a href="#">Inicio</a>
+        <a routerLink="/dashboard">Inicio</a>
         <p>/</p>
-        <a href="#" class="actual">Inventario</a>
+        <a routerLink="/polizas" class="actual">Polizas</a>
     </div>
 
-    <button routerLink="/inventario/nuevo">
+    <button routerLink="/polizas/nuevo">
         <i class="ti ti-plus"></i>
-        Nuevo Articulo
+        Nueva Póliza
     </button>
 </header>
 
@@ -15,29 +15,35 @@
 <main>
     <div class="table__container">
         <div class="table__header">
-            <p class="txt title">Articulos</p>
-            <p class="txt size"> ({{(inventarios$ | async)?.length ?? 0}}) </p>
+            <p class="txt title">Pólizas</p>
+            <p class="txt size"> ({{(polizas$ | async)?.length ?? 0}}) </p>
         </div>
         <div class="table--wrapper">
             <table>
                 <tr class="titles">
+                    <th>ID</th>
+                    <th>Empleado</th>
+                    <th>Artículo</th>
                     <th>SKU</th>
-                    <th>Nombre</th>
                     <th>Cantidad</th>
+                    <th>Fecha</th>
                     <th></th>
                     <th></th>
                 </tr>
 
-                @for (inventario of (inventarios$ | async); track $index) {
+                @for (poliza of (polizas$ | async); track $index) {
                 <tr>
-                    <td> {{inventario.sku}} </td>
-                    <td> {{inventario.nombre}} </td>
-                    <td> {{inventario.cantidad}} </td>
+                    <td> {{poliza.idPoliza}} </td>
+                    <td> {{poliza.nombreEmpleado}} </td>
+                    <td> {{poliza.nombreArticulo}} </td>
+                    <td> {{poliza.sku}} </td>
+                    <td> {{poliza.cantidadFaltante}} </td>
+                    <td> {{poliza.fechaCreacion | date:'dd/MM/yyyy HH:mm'}} </td>
                     <td>
-                        <a [routerLink]="['/inventario', inventario.sku, 'editar']"><i class="ti ti-edit"></i></a>
+                        <a [routerLink]="['/polizas', poliza.idPoliza, 'editar']"><i class="ti ti-edit"></i></a>
                     </td>
                     <td>
-                        <button (click)="abrirModalEliminar(inventario.sku)"><i class="ti ti-trash"></i></button>
+                        <button (click)="abrirModalEliminar(poliza.idPoliza)"><i class="ti ti-trash"></i></button>
                     </td>
                 </tr>
                 }
@@ -52,7 +58,7 @@
         <i class="ti ti-alert-octagon"></i>
         <div class="buttons__container">
             <button (click)="cerrarModalEliminar()" class="cancelar">Cancelar</button>
-            <button class="eliminar" (click)="eliminarInventario()">Eliminar</button>
+            <button class="eliminar" (click)="eliminarPoliza()">Eliminar</button>
         </div>
     </div>
 </div>

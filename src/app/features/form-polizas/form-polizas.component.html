@@ -1,0 +1,60 @@
+<header>
+    <a routerLink="/dashboard">Inicio</a>
+    <p>/</p>
+    <a routerLink="/polizas">Pólizas</a>
+    <p>/</p>
+    <a routerLink="/polizas/nuevo" class="actual">Nueva Póliza</a>
+</header>
+
+<main>
+    <div class="form__container">
+        <div class="form__header">
+            <p>Datos de la Póliza</p>
+        </div>
+        <form [formGroup]="polizaForm" (ngSubmit)="guardar()">
+            <div class="contact__container">
+                <div class="contact__group">
+                    <label for="">Empleado Responsable</label>
+                    <select name="" id="" formControlName="idEmpleado"
+                        [class.input--error]="idEmpleado?.invalid && idEmpleado?.touched">
+                        @for(empleado of (empleados$ | async); track $index){
+                        <option value="{{empleado.idEmpleado}}"> {{empleado.nombre}} {{empleado.apellido}} </option>
+                        }
+                    </select>
+                    @if(idEmpleado?.invalid && idEmpleado?.touched){
+                    <span class="input__error">El empleado es requerido</span>
+                    }
+                </div>
+                <div class="contact__group">
+                    <label for="">Artículos (SKU)</label>
+                    <select name="" id="" formControlName="sku" [class.input--error]="sku?.invalid && sku?.touched">
+                        <option name="" id="" disabled selected hidden>--- Elige un artículo ---</option>
+
+                        @for (articulo of (inventarios$ | async); track $index) {
+                        <option value="{{articulo.sku}}"> {{articulo.nombre}} </option>
+                        }
+                    </select>
+                    @if(sku?.invalid && sku?.touched){
+                    <span class="input__error">El artículo es requerido</span>
+                    }
+                </div>
+                <div class="contact__group">
+                    <label for="">Cantidad faltante</label>
+                    <input type="number" name="" id="" placeholder="Introduce la cantidad faltante..."
+                        formControlName="cantidad" [class.input--error]="cantidad?.invalid && cantidad?.touched">
+                    @if(cantidad?.invalid && cantidad?.touched){
+                    <span class="input__error">La cantidad faltante es requerida</span>
+                    }
+                </div>
+            </div>
+
+            <div class="btns__container">
+                <button (click)="cancelar()">Cancelar</button>
+                <button>
+                    <i class="ti ti-plus"></i>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>

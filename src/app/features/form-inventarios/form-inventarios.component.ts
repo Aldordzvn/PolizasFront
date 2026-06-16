@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { InventarioService } from '../../core/services/inventario.service';
 import { ActualizarInventarioRequest, CrearInventarioRequest } from '../../shared/models/inventario.model';
 
 @Component({
   selector: 'app-form-inventarios',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './form-inventarios.component.html',
   styleUrl: './form-inventarios.component.scss'
 })

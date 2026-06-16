@@ -10,7 +10,7 @@ import { errorContext } from 'rxjs/internal/util/errorContext';
 
 @Component({
   selector: 'app-empleados',
-  imports: [RouterLink, RouterOutlet, CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './empleados.component.html',
   styleUrl: './empleados.component.scss'
 })
