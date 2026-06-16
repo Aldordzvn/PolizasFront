@@ -1,0 +1,126 @@
+header {
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-bottom: 1px solid var(--border);
+
+    a {
+        text-decoration: none;
+        color: var(--textSecondary);
+
+        &.actual {
+            color: var(--textPrimary);
+        }
+
+        &:hover {
+            color: var(--textTertiary);
+        }
+    }
+
+    p {
+        color: var(--textSecondary);
+    }
+
+}
+
+.form__container {
+    border: 1px solid var(--border);
+    margin-top: 1.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form__header {
+    padding: 1.6rem;
+
+    p {
+        margin: 0;
+    }
+
+    border-bottom: 1px solid var(--border);
+}
+
+.contact__container {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border);
+    gap: 2rem;
+
+    .contact__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        label {
+            color: var(--textSecondary);
+        }
+
+        input[type="number"] {
+            appearance: none;
+            border-radius: 6px;
+            border: 1px solid var(--textTertiary);
+            padding: 1rem;
+            font-size: 2rem;
+            outline: none;
+
+            &:focus {
+                border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+                box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+            }
+        }
+
+        select {
+            appearance: none;
+            border-radius: 6px;
+            border: 1px solid var(--textTertiary);
+            padding: 1rem;
+            font-size: 2rem;
+            outline: none;
+
+
+            &:focus {
+                border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+                box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+            }
+
+        }
+    }
+
+    .input--error {
+        border-color: #ef4444 !important;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+    }
+
+    .input__error {
+        font-size: 1.1rem;
+        color: #ef4444;
+        margin-top: -0.4rem;
+    }
+}
+
+.btns__container {
+    display: flex;
+    padding: 1.6rem;
+    justify-content: right;
+    gap: 2rem;
+
+    button {
+        height: 4rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background-color: transparent;
+        padding: 0 1.6rem;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+            background-color: var(--bgRaised);
+        }
+    }
+}

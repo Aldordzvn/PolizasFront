@@ -65,5 +65,19 @@ export const routes: Routes = [
       import('./features/polizas/polizas.component')
         .then(m => m.PolizasComponent)
   },
+  {
+    path: 'polizas/nuevo',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-polizas/form-polizas.component')
+        .then(m => m.FormPolizasComponent)
+  },
+  {
+    path: 'polizas/:id/editar',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-polizas/form-polizas.component')
+        .then(m => m.FormPolizasComponent)
+  },
   { path: '**', redirectTo: 'login' }
 ];
