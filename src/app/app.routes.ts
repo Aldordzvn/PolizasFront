@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     loadComponent: () =>
@@ -43,6 +43,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/inventario/inventario.component')
         .then(m => m.InventarioComponent)
+  },
+  {
+    path: 'inventario/nuevo',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-inventarios/form-inventarios.component')
+        .then(m => m.FormInventariosComponent)
+  },
+  {
+    path: 'inventario/:sku/editar',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/form-inventarios/form-inventarios.component')
+        .then(m => m.FormInventariosComponent)
   },
   {
     path: 'polizas',

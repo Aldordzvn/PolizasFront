@@ -1,0 +1,48 @@
+<header>
+    <a href="#">Inicio</a>
+    <p>/</p>
+    <a href="#">Inventario</a>
+    <p>/</p>
+    <a href="#" class="actual" >Nuevo Inventario</a>
+</header>
+
+<main>
+    <div class="form__container">
+        <div class="form__header">
+            <p>Datos del inventario</p>
+        </div>
+        <form [formGroup]="inventarioForm" (ngSubmit)="guardar()">
+            <div class="contact__container">
+                <div class="contact__group">
+                    <label for="">SKU</label>
+                    <input type="text" placeholder="Introduce el SKU..." formControlName="sku" [class.input--error]="sku?.invalid && sku?.touched">
+                    @if(sku?.invalid && sku?.touched){
+                        <span class="input__error">El SKU es requerido</span>
+                    }
+                </div>
+                <div class="contact__group">
+                    <label for="">Nombre</label>
+                    <input type="text" name="" id="" placeholder="Introduce el nombre del producto..." formControlName="nombre" [class.input--error]="nombre?.invalid && nombre?.touched">
+                    @if(nombre?.invalid && nombre?.touched){
+                        <span class="input__error">El nombre del producto es requerido</span>
+                    }
+                </div>
+                <div class="contact__group">
+                    <label for="">Cantidad</label>
+                    <input type="text" name="" id="" placeholder="Introduce la cantidad del producto..." formControlName="cantidad" [class.input--error]="cantidad?.invalid && cantidad?.touched">
+                    @if(cantidad?.invalid && cantidad?.touched){
+                        <span class="input__error">La cantidad del producto es requerido</span>
+                    }
+                </div>
+            </div>
+
+            <div class="btns__container">
+                <button (click)="cancelar()">Cancelar</button>
+                <button>
+                    <i class="ti ti-plus"></i>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
