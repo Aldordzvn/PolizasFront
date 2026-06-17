@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { AsideMenuComponent } from "./features/aside-menu/aside-menu.component";
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,14 @@ import { AsideMenuComponent } from "./features/aside-menu/aside-menu.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'polizasfront';
+  private router = inject(Router);
+  mostrarNav = true;
+
+  constructor(){
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.mostrarNav = !event.urlAfterRedirects.includes('/login')
+    });
+  }
 }
