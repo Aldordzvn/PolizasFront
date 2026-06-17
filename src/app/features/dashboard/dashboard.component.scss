@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 :host {
     flex: 1;
     position: relative;
@@ -9,6 +11,7 @@ header {
     align-items: center;
     padding: 1.6rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bgSurface);
 
     a {
         text-decoration: none;
@@ -125,7 +128,7 @@ main {
             }
         }
 
-        .estatus__container{
+        .estatus__container {
             background-color: black;
             border: 1px solid transparent;
             border-radius: 16px;
@@ -134,7 +137,8 @@ main {
             align-items: center;
             padding: 0.3rem 1rem;
             height: fit-content;
-            .txt__estatus{
+
+            .txt__estatus {
                 font-size: 1rem;
                 color: var(--success);
                 margin: 0;
@@ -144,7 +148,7 @@ main {
     }
 }
 
-.card__logout{
+.card__logout {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -155,18 +159,32 @@ main {
     right: 0;
     margin: 0 2rem 2rem 0;
 
-    button{
+    button {
         border: 1px solid var(--border);
         border-radius: 8px;
         background-color: var(--bgSurface);
         padding: 1rem;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: var(--bgRaised);
         }
     }
 
-    i{
+    i {
         font-size: 4rem;
+    }
+}
+
+@include desktop() {
+    .cards--dashboard {
+        grid-template-columns: repeat(4, 1fr);
+        .card__container {
+            
+        }
+    }
+
+    .card__logout{
+        display: none;
     }
 }
