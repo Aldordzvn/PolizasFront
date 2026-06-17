@@ -82,6 +82,20 @@ form {
                 box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
             }
         }
+
+        input[type="number"] {
+            appearance: none;
+            border-radius: 6px;
+            border: 1px solid var(--textTertiary);
+            padding: 1rem;
+            font-size: 2rem;
+            outline: none;
+
+            &:focus {
+                border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+                box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+            }
+        }
     }
 }
 
