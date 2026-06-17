@@ -1,15 +1,22 @@
+@import '../../styles/mixins';
+
+:host {
+    width: 100%;
+}
+
 header {
     padding: 1.6rem;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bgSurface);
 
     a {
         text-decoration: none;
         color: var(--textSecondary);
 
-        &.actual{
+        &.actual {
             color: var(--textPrimary);
         }
 
@@ -24,15 +31,16 @@ header {
 
 }
 
-.form__container{
+.form__container {
     border: 1px solid var(--border);
     margin-top: 1.8rem;
+    background-color: var(--bgSurface);
 }
 
 form {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .form__header {
@@ -77,12 +85,13 @@ form {
     }
 }
 
-.btns__container{
+.btns__container {
     display: flex;
     padding: 1.6rem;
     justify-content: right;
     gap: 2rem;
-    button{
+
+    button {
         height: 4rem;
         border: 1px solid var(--border);
         border-radius: 6px;
@@ -90,7 +99,8 @@ form {
         padding: 0 1.6rem;
         cursor: pointer;
         font-weight: 600;
-        &:hover{
+
+        &:hover {
             background-color: var(--bgRaised);
         }
     }
@@ -122,4 +132,15 @@ form {
     i {
         font-size: 1.6rem;
     }
+}
+
+@include desktop() {
+    .form__container {
+        margin-top: unset;
+        border-radius: 8px;
+        max-width: 70rem;
+        width: 100%;
+        margin: 1.6rem auto 0;
+    }
+
 }
