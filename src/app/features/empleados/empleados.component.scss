@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 :host {
     flex: 1;
 }
@@ -8,6 +10,7 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bgSurface);
 
     .route__container {
         display: flex;
@@ -25,6 +28,10 @@ header {
             &:hover {
                 color: var(--textTertiary);
             }
+        }
+
+        p{
+            margin: 0;
         }
     }
 
@@ -58,6 +65,7 @@ main {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
+    border-radius: 8px;
 
     .table__header {
         display: flex;
@@ -102,6 +110,7 @@ table {
     th {
         background-color: var(--bgRaised);
         padding: 1rem 1.6rem;
+        text-align: left;
     }
 
     td {
@@ -196,4 +205,8 @@ table {
             }
         }
     }
+}
+
+@include desktop(){
+
 }
