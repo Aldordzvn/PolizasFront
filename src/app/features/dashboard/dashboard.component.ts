@@ -8,7 +8,7 @@ import { Empleado } from '../../shared/models/empleado.model';
 import { Inventario } from '../../shared/models/inventario.model';
 import { mapOneOrManyArgs } from 'rxjs/internal/util/mapOneOrManyArgs';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +20,7 @@ export class DashboardComponent {
   private polizaService = inject(PolizasService);
   private empleadoService = inject(EmpleadoService);
   private inventarioService = inject(InventarioService);
+  private router = inject(Router);
   polizas$ : Observable<Poliza[]> = this.polizaService.polizas$;
   empleados$ : Observable<Empleado[]> = this.empleadoService.empleados$;
   inventarios$ : Observable<Inventario[]> = this.inventarioService.inventarios$;
@@ -33,5 +34,8 @@ export class DashboardComponent {
     this.inventarioService.getInventarios().subscribe();
   }
   
-  
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

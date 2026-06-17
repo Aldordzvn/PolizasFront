@@ -36,35 +36,16 @@
         <div class="poliza__card">
             <div class="card__datos">
                 <p class="identificador">#<span>{{poliza.idPoliza}} -- {{poliza.nombreEmpleado}}</span></p>
-                <p class="producto"><span>{{poliza.nombreArticulo}}. </span> Cant. <span> {{poliza.cantidadFaltante}} </span></p>
+                <p class="producto"><span>{{poliza.nombreArticulo}}. </span> Cant. <span> {{poliza.cantidadFaltante}}
+                    </span></p>
             </div>
         </div>
         }
     </div>
 
-    <!-- <div class="poliza__table--container">
-        <div class="poliza__table--header">
-            <p class="txt">Pólizas recientes</p>
-            <button>Ver todas</button>
-        </div>
-
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Empleado</th>
-                <th>Artículo</th>
-                <th>Cantidad</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-            </tr>
-            <tr>
-                <td>#12</td>
-                <td>Aldo Rodrigeuz</td>
-                <td>Teclado USB</td>
-                <td>3</td>
-                <td>Hoy 12:00</td>
-                <td>Activa</td>
-            </tr>
-        </table>
-    </div> -->
+    <div class="card__logout">
+        <button (click)="logout()">
+            <i class="ti ti-logout"></i>
+        </button>
+    </div>
 </main>
