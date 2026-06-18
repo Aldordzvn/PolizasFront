@@ -1,9 +1,17 @@
+@import '../../styles/mixins';
+
+:host{
+    width: 100%;
+}
+
 header {
+    height: 5.2rem;
     padding: 1.6rem;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bgSurface);
 
     a {
         text-decoration: none;
@@ -27,6 +35,7 @@ header {
 .form__container {
     border: 1px solid var(--border);
     margin-top: 1.8rem;
+    background-color: var(--bgSurface);
 }
 
 form {
@@ -143,5 +152,15 @@ form {
 
     i {
         font-size: 1.6rem;
+    }
+}
+
+@include desktop(){
+    .form__container {
+        margin-top: unset;
+        border-radius: 8px;
+        max-width: 70rem;
+        width: 100%;
+        margin: 1.6rem auto 0;
     }
 }

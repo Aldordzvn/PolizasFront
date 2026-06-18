@@ -1,15 +1,23 @@
+@import '../../styles/mixins';
+
+:host {
+    width: 100%;
+}
+
 header {
+    height: 5.2rem;
     padding: 1.6rem;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bgSurface);
 
     a {
         text-decoration: none;
         color: var(--textSecondary);
 
-        &.actual{
+        &.actual {
             color: var(--textPrimary);
         }
 
@@ -24,15 +32,16 @@ header {
 
 }
 
-.form__container{
+.form__container {
     border: 1px solid var(--border);
     margin-top: 1.8rem;
+    background-color: var(--bgSurface);
 }
 
 form {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .form__header {
@@ -74,15 +83,30 @@ form {
                 box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
             }
         }
+
+        input[type="number"] {
+            appearance: none;
+            border-radius: 6px;
+            border: 1px solid var(--textTertiary);
+            padding: 1rem;
+            font-size: 2rem;
+            outline: none;
+
+            &:focus {
+                border-color: light-dark(rgba(70, 130, 213, 1), rgba(70, 130, 213, 1));
+                box-shadow: 0 0 0 3px light-dark(rgba(214, 228, 246, 1), rgba(37, 62, 95, 1));
+            }
+        }
     }
 }
 
-.btns__container{
+.btns__container {
     display: flex;
     padding: 1.6rem;
     justify-content: right;
     gap: 2rem;
-    button{
+
+    button {
         height: 4rem;
         border: 1px solid var(--border);
         border-radius: 6px;
@@ -90,7 +114,8 @@ form {
         padding: 0 1.6rem;
         cursor: pointer;
         font-weight: 600;
-        &:hover{
+
+        &:hover {
             background-color: var(--bgRaised);
         }
     }
@@ -122,4 +147,15 @@ form {
     i {
         font-size: 1.6rem;
     }
+}
+
+@include desktop() {
+    .form__container {
+        margin-top: unset;
+        border-radius: 8px;
+        max-width: 70rem;
+        width: 100%;
+        margin: 1.6rem auto 0;
+    }
+
 }

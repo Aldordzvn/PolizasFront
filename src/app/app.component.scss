@@ -1,5 +1,14 @@
+@import './styles/mixins';
+
 main{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     height: 100%;
+}
+
+@include desktop(){
+    main{
+        flex-direction: row-reverse;
+    }
 }

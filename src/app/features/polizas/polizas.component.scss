@@ -1,37 +1,49 @@
-header{
+@import '../../styles/mixins';
+
+:host {
+    width: 100%;
+}
+
+header {
+    height: 5.2rem;
     padding: 1.6rem;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
     background-color: var(--bgSurface);
-    button{
+
+    button {
         border: 1px solid var(--border);
         border-radius: 6px;
         background-color: transparent;
         font-weight: 600;
         padding: 0 1rem;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: var(--bgRaised);
         }
     }
 }
 
-main{
+main {
     padding: 1.6rem;
 }
 
-.links__container{
+.links__container {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    a{
+
+    a {
         text-decoration: none;
         color: var(--textSecondary);
-        &.actual{
+
+        &.actual {
             color: var(--textPrimary);
         }
-        &:hover{
+
+        &:hover {
             color: var(--textTertiary);
         }
     }
@@ -41,6 +53,7 @@ main{
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
+    border-radius: 8px;
 
     .table__header {
         display: flex;
@@ -85,6 +98,7 @@ table {
     th {
         background-color: var(--bgRaised);
         padding: 1rem 1.6rem;
+        text-align: left;
     }
 
     td {
@@ -135,9 +149,9 @@ table {
     display: none;
     align-items: center;
     justify-content: center;
-    
 
-    &.active{
+
+    &.active {
         display: flex;
     }
 
@@ -165,6 +179,7 @@ table {
             display: flex;
             justify-content: space-between;
             gap: 3rem;
+
             button {
                 background-color: transparent;
                 border: 2px solid var(--border);
@@ -173,10 +188,19 @@ table {
                 padding: 0 2rem;
                 cursor: pointer;
                 font-weight: 600;
-                &:hover{
+
+                &:hover {
                     background-color: var(--bgRaised);
                 }
             }
+        }
+    }
+}
+
+@include desktop() {
+    table {
+        td {
+            white-space: normal;
         }
     }
 }
