@@ -69,6 +69,7 @@
         padding: 1.6rem;
         height: -webkit-fill-available;
         border-right: 1px solid var(--border);
+
         a {
             align-content: center;
             justify-content: center;
@@ -77,26 +78,31 @@
 
     .polizas--title__container {
         display: flex;
-        gap: 1rem;
+        justify-content: space-between;
         align-items: center;
 
-        .file__container {
-            background-color: var(--primary);
+        .polizas--title__content {
             display: flex;
-            width: fit-content;
-            padding: 0.5rem;
-            border: 1px solid var(--primaryHover);
-            border-radius: 8px;
+            align-items: center;
+            gap: 1rem;
+            .file__container {
+                background-color: var(--primary);
+                display: flex;
+                width: fit-content;
+                padding: 0.5rem;
+                border: 1px solid var(--primaryHover);
+                border-radius: 8px;
 
-            i {
-                font-size: 2.5rem;
-                color: #FAFAFA;
+                i {
+                    font-size: 2.5rem;
+                    color: #FAFAFA;
+                }
             }
-        }
 
-        p {
-            font-weight: 600;
+            p {
+                font-weight: 600;
 
+            }
         }
     }
 
@@ -138,6 +144,7 @@
 
     .logout__container {
         margin-top: auto;
+
         .btn__logout {
             border: 1px solid transparent;
             border-radius: 8px;
@@ -147,6 +154,7 @@
             width: 100%;
             text-align: left;
             cursor: pointer;
+
             &:hover {
                 background-color: var(--bgRaised);
                 font-weight: 600;

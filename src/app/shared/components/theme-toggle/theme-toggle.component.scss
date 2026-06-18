@@ -1,0 +1,27 @@
+.theme-toggle {
+  // border-radius: 6px;
+  // padding: 1rem;
+  // border: 1px solid var(--border);
+  // background: var(--bgSurface);
+  // color: var(--text-secondary);
+  // cursor: pointer;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // transition: background 0.15s;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bgSurface);
+  padding: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--bgRaised);
+  }
+
+  i {
+    font-size: 2rem;
+    color: var(--textPrimary);
+  }
+}

@@ -9,10 +9,11 @@ import { Inventario } from '../../shared/models/inventario.model';
 import { mapOneOrManyArgs } from 'rxjs/internal/util/mapOneOrManyArgs';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { ThemeToggleComponent } from "../../shared/components/theme-toggle/theme-toggle.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ThemeToggleComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

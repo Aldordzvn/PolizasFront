@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { AsideMenuComponent } from "./features/aside-menu/aside-menu.component";
 import { filter } from 'rxjs';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
   private router = inject(Router);
+  private themeService = inject(ThemeService);
   mostrarNav = true;
 
   constructor(){
