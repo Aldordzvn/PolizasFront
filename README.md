@@ -1,59 +1,128 @@
-# Polizasfront
+# Sistema de Pólizas de Faltantes — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+Aplicación Angular para la gestión de pólizas de faltantes en inventario. Permite registrar empleados, controlar el inventario y generar pólizas que descuentan automáticamente la cantidad correspondiente.
 
-## Development server
+## Stack tecnológico
 
-To start a local development server, run:
+- Angular 17+ con Standalone Components
+- TypeScript
+- RxJS (BehaviorSubject para estado local)
+- SCSS con CSS Custom Properties (dark/light mode)
+- Tabler Icons
+
+## Requisitos previos
+
+- Node.js v18 o superior
+- Angular CLI (`npm install -g @angular/cli`)
+- El backend del proyecto corriendo en `http://localhost:8080`
+
+## Instalación
+
+Clona el repositorio y entra a la carpeta del proyecto:
+
+```bash
+git clone https://github.com/Aldordzvn/PolizasFront.git
+cd polizasfront
+```
+
+Instala las dependencias:
+
+```bash
+npm install
+```
+
+## Configuración
+
+La URL base de la API se define en los archivos de entorno:
+
+```typescript
+// src/environments/environment.ts
+export const environment = {
+  apiUrl: 'http://localhost:8080/api'
+};
+```
+
+Si tu backend corre en otro puerto o dominio, ajusta este valor antes de levantar el proyecto.
+
+## Ejecución en desarrollo
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación queda disponible en `http://localhost:4200`.
 
-## Code scaffolding
+Asegúrate de que el backend esté corriendo antes de iniciar sesión — sin él, el login y todas las pantallas que consumen datos no funcionarán.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Credenciales de acceso
 
-```bash
-ng generate component component-name
+El sistema usa un único usuario administrador definido en el backend:
+
+```
+Usuario: admin
+Contraseña: admin123
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Estructura del proyecto
 
-```bash
-ng generate --help
+```
+src/app/
+├── core/
+│   ├── interceptors/   # Interceptor JWT — adjunta el token y maneja 401/403
+│   ├── guards/         # Guard de autenticación para rutas protegidas
+│   └── services/       # AuthService, EmpleadoService, InventarioService, PolizaService
+├── features/
+│   ├── aside-menu/      # Pantalla del Nav
+│   ├── auth/login/      # Pantalla de inicio de sesión
+│   ├── dashboard/        # Resumen general con contadores
+│   ├── empleados/        # CRUD de empleados
+│   ├── inventario/       # CRUD de inventario
+│   └── polizas/           # CRUD de pólizas
+│   └── form-empleados/           # Pantalla de formulario
+│   └── form-inventarios/           # Pantalla de formulario
+│   └── form-polizas/           # pantalla de formulario
+├── shared/
+│   └── models/          # Interfaces de los modelos y DTOs de request
+│── styles/              # Estilos reutilizables y fuentes
+└── app.routes.ts
 ```
 
-## Building
+## Funcionalidades
 
-To build the project run:
+### Autenticación
+- Login contra el endpoint `/api/auth/login`
+- Token JWT almacenado en `localStorage`
+- Interceptor que adjunta el token automáticamente en cada petición
+- Redirección automática al login si el token es inválido o expiró (401/403)
+- Rutas protegidas mediante guard de autenticación
 
-```bash
-ng build
-```
+### Dashboard
+- Conteo de pólizas, empleados activos e inventario total
+- Indicador de artículos con stock crítico
+- Listado de pólizas recientes
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Empleados
+- Listado, creación, edición y eliminación (soft delete)
+- Validación de campos requeridos
 
-## Running unit tests
+### Inventario
+- Listado, creación, edición y eliminación
+- Validación de cantidad mayor a cero
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Pólizas
+- Listado con nombre de empleado y artículo relacionado
+- Creación con descuento automático de inventario
+- Edición con recálculo de inventario según la diferencia
+- Eliminación con restauración de inventario
+- Manejo de errores de negocio del backend (ej. inventario insuficiente) mostrados directamente en el formulario
 
-```bash
-ng test
-```
+## Diseño
 
-## Running end-to-end tests
+El proyecto usa un sistema de diseño propio basado en CSS Custom Properties, con soporte para modo claro y oscuro mediante una clase `.dark` en el elemento raíz. Los tokens de color, tipografía y espaciado están centralizados en `src/styles/_tokens.scss`.
 
-For end-to-end (e2e) testing, run:
+## Mejoras futuras
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Refresh tokens para renovar la sesión sin requerir nuevo login
+- Componentes compartidos adicionales (formulario genérico, tabla genérica)
+- Paginación en los listados
+- Tests unitarios de componentes y servicios
